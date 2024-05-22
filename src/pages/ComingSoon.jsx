@@ -1,8 +1,65 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Countdown, { zeroPad } from "react-countdown";
+import * as emailjs from "emailjs-com";
+
+import { contactConfig } from "../components/footer/index";
+
 
 function ComingSoon(props) {
+
+  const [formData, setFormdata] = useState({
+    email: "",
+    message: "Subscribe",
+    alertmessage: "",
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setFormdata({ loading: true });
+
+    const templateParams = {
+      from_name: formData.email,
+      user_name: formData.name,
+      to_name: contactConfig.YOUR_EMAIL,
+      message: formData.message,
+    };
+
+    emailjs
+      .send(
+        contactConfig.YOUR_SERVICE_ID,
+        contactConfig.YOUR_TEMPLATE_ID,
+        templateParams,
+        contactConfig.YOUR_USER_ID
+      )
+      .then(
+        (result) => {
+          console.log(result, 'asdasdas');
+          setFormdata({
+            loading: false,
+            alertmessage: "SUCCESS! ,Thankyou for your messege",
+            variant: "success",
+            show: true,
+          });
+        },
+        (error) => {
+          console.log(error, 'error');
+          setFormdata({
+            alertmessage: `Faild to send!`,
+            variant: "danger",
+            show: true,
+          });
+        }
+      );
+  };
+
+  const handleChange = (e) => {
+    setFormdata({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   const renderer = ({ days, hours, minutes, seconds }) => {
     console.log(days, hours, minutes, seconds);
     return (
@@ -65,13 +122,15 @@ function ComingSoon(props) {
                 <li>Seconds</li>
               </ul> */}
             </div>
-            <form action="#" className="newlletter-form" id="subscribe-form">
+            <p className="my-0">{formData.alertmessage}</p>
+            <form action="#" className="newlletter-form" id="subscribe-form" onSubmit={handleSubmit}>
               <span></span>
               <input
                 type="email"
                 placeholder="Your Email Address"
                 required=""
                 id="subscribe-email"
+                name='email' value={formData.email} onChange={handleChange}
               />
               <div className="btn-pst">
                 <button
