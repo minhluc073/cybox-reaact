@@ -6,10 +6,14 @@ import PageTitle from '../components/pagetitle';
 import About from '../features/about/home-v3';
 import Partner from '../features/partner';
 import Team from '../features/team';
+import { Helmet } from 'react-helmet';
 
 function AboutTwo(props) {
     return (
         <div className='about-v2'>
+            <Helmet>
+                <title>About 02</title>
+            </Helmet>
             <PageTitle title='About Us' />
 
             <About data={dataAbout} />

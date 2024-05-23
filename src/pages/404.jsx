@@ -1,10 +1,14 @@
 import React from 'react';
 import Button from '../components/button';
+import { Helmet } from 'react-helmet';
 
 
 function Page404(props) {
     return (
         <section className="page-title p404">
+            <Helmet>
+                <title>404</title>
+            </Helmet>
             <div className="container">
                 <div className="row">
                     <div className="col-md-12">

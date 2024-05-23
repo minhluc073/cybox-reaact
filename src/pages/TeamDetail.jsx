@@ -5,11 +5,15 @@ import Team from '../features/team/home-v2';
 import dataTeam from '../assets/fake-data/data-team';
 import Partner from '../features/partner';
 import dataPartner from '../assets/fake-data/data-partner';
+import { Helmet } from 'react-helmet';
 
 
 function TeamDetail(props) {
     return (
         <div>
+            <Helmet>
+                <title>Our Team</title>
+            </Helmet>
             <PageTitle title='Our Team' />
 
             <section className="tf-section team-detail ">

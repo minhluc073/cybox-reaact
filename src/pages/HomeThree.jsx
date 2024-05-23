@@ -17,11 +17,15 @@ import Blog from '../features/blog/home-v2';
 import dataBlog from '../assets/fake-data/data-blog';
 import FAQ from '../features/faq/home-v3';
 import dataFaq from '../assets/fake-data/data-faq';
+import { Helmet } from 'react-helmet';
 
 
 function HomeThree(props) {
     return (
         <div className='home-3'>
+            <Helmet>
+                <title>Home 03</title>
+            </Helmet>
             <Slider data={dataSlider} />
 
             <About data={dataAbout} />

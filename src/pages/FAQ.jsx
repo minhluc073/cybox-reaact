@@ -2,12 +2,16 @@ import React from 'react';
 import PageTitle from '../components/pagetitle';
 import dataFaq from '../assets/fake-data/data-faq';
 import AccordionItem from '../features/faq/accordion-item';
+import { Helmet } from 'react-helmet';
 
 
 
 function FAQ(props) {
     return (
         <div>
+            <Helmet>
+                <title>FAQ</title>
+            </Helmet>
             <PageTitle title='Asked Questions' />
 
             <section className="tf-section faq bg-st2">

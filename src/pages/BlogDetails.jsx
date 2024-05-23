@@ -2,11 +2,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import dataBlog from '../assets/fake-data/data-blog';
 import Blog from '../features/blog/home-v2';
+import { Helmet } from 'react-helmet';
 
 
 function BlogDetails(props) {
     return (
         <div className='post-details'>
+            <Helmet>
+                <title>Blog Detail</title>
+            </Helmet>
             <section className="page-title">
                 <div className="image">
                     <img src={require('../assets/images/post/imgpost10.jpg')} alt="" />
@@ -63,10 +67,10 @@ function BlogDetails(props) {
                             <div className="content-details">
                                 <h6>How to Set up your Avatar And Nickname</h6>
                                 <p className="st2">Setting up your avatar and personalizing your nickname on Binance is quick and easy. 
-                                    Users can go to binance.com under Dashboard > Settings > My Profile > Avatar and Nickname. For those of you who own NFT assets, 
+                                    Users can go to binance.com under Dashboard &#62; Settings &#62; My Profile &#62; Avatar and Nickname. For those of you who own NFT assets, 
                                     you can select the NFT you want to use from your collection as your avatar to personalize your profile. 
                                     For users who do not own any NFT avatars, check out the NFT avatar collections page to get started.</p>
-                                <p>Alternatively, if you’re on nft.binance.com, go to User Center > Settings > Basic > Set Avatar and Nickname, 
+                                <p>Alternatively, if you’re on nft.binance.com, go to User Center &#62; Settings &#62; Basic &#62; Set Avatar and Nickname, 
                                     and you’ll be redirected to the main site. Binance NFT Creators have the option of setting their Avatars on nft.binance.com. 
                                     Once you set your new unique nickname, it will be standardized and used across the Binance ecosystem.</p>
                                 

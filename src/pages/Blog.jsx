@@ -5,10 +5,14 @@ import img1 from '../assets/images/post/imgpost1.jpg'
 
 import dataBlog from '../assets/fake-data/data-blog2';
 import Sidebar from '../components/sidebar';
+import { Helmet } from 'react-helmet';
 
 function Blog(props) {
     return (
         <div>
+            <Helmet>
+                <title>Blogs</title>
+            </Helmet>
             <PageTitle title='OUR BLOGs' />
 
             <section className="tf-section grid">

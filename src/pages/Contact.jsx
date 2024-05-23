@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import PageTitle from "../components/pagetitle";
 import * as emailjs from "emailjs-com";
 
-import { contactConfig } from "../components/footer/index";
+import { contactConfig } from "../assets/fake-data/dataContact";
+import { Helmet } from "react-helmet";
 
 function Contact(props) {
   const [formData, setFormdata] = useState({
@@ -34,18 +35,16 @@ function Contact(props) {
       )
       .then(
         (result) => {
-          console.log(result, "asdasdas");
           setFormdata({
             loading: false,
-            alertmessage: "SUCCESS! ,Thankyou for your messege",
+            alertmessage: "SUCCESS! ,Thankyou for your message",
             variant: "success",
             show: true,
           });
         },
         (error) => {
-          console.log(error, "error");
           setFormdata({
-            alertmessage: `Faild to send!`,
+            alertmessage: `Failed to send!`,
             variant: "danger",
             show: true,
           });
@@ -62,6 +61,9 @@ function Contact(props) {
 
   return (
     <div>
+      <Helmet>
+        <title>Contact Us</title>
+      </Helmet>
       <PageTitle title="Contact Uss" />
 
       <section className="tf-section tf-contact">
@@ -89,7 +91,14 @@ function Contact(props) {
                 onSubmit={handleSubmit}
               >
                 <fieldset>
-                  <input type="text" name="name" id="name" value={formData.name} onChange={handleChange} placeholder="Name" />
+                  <input
+                    type="text"
+                    name="name"
+                    id="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    placeholder="Name"
+                  />
                 </fieldset>
                 <fieldset>
                   <input
@@ -107,7 +116,8 @@ function Contact(props) {
                     name="phone"
                     id="phone"
                     placeholder="Phone"
-                    value={formData.phone} onChange={handleChange}
+                    value={formData.phone}
+                    onChange={handleChange}
                   />
                 </fieldset>
                 <fieldset>
@@ -118,14 +128,15 @@ function Contact(props) {
                     name="message"
                     className="message"
                     id="message"
-                    value={formData.message} onChange={handleChange}
+                    value={formData.message}
+                    onChange={handleChange}
                   ></textarea>
                 </fieldset>
                 <button className="tf-button btn-effect" type="submit">
                   <span className="boder-fade"></span>
                   <span className="effect">Send Message</span>
                 </button>
-                <p className="my-0">{formData.alertmessage}</p>
+                <p className={`alert-subscribe ${formData.variant}`}>{formData.alertmessage}</p>
               </form>
             </div>
             <div className="col-xl-7  col-md-12">

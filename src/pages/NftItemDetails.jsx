@@ -4,10 +4,14 @@ import img from '../assets/images/common/img15.jpg';
 import { Link } from 'react-router-dom';
 import Project from '../features/project/nftdetails';
 import dataProject from '../assets/fake-data/dataProject';
+import { Helmet } from 'react-helmet';
 
 function NftItemDetails(props) {
     return (
         <div className='page-item-details'>
+            <Helmet>
+                <title>NFT Item Details</title>
+            </Helmet>
             <PageTitle title='ITEM Details' />
 
             <section className="tf-section tf-item-details pb-mobie">

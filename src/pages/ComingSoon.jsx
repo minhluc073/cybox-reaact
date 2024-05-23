@@ -3,11 +3,10 @@ import { Link } from "react-router-dom";
 import Countdown, { zeroPad } from "react-countdown";
 import * as emailjs from "emailjs-com";
 
-import { contactConfig } from "../components/footer/index";
-
+import { contactConfig } from "../assets/fake-data/dataContact";
+import { Helmet } from "react-helmet";
 
 function ComingSoon(props) {
-
   const [formData, setFormdata] = useState({
     email: "",
     message: "Subscribe",
@@ -34,18 +33,16 @@ function ComingSoon(props) {
       )
       .then(
         (result) => {
-          console.log(result, 'asdasdas');
           setFormdata({
             loading: false,
-            alertmessage: "SUCCESS! ,Thankyou for your messege",
+            alertmessage: "SUCCESS! ,Thankyou for your message",
             variant: "success",
             show: true,
           });
         },
         (error) => {
-          console.log(error, 'error');
           setFormdata({
-            alertmessage: `Faild to send!`,
+            alertmessage: `Failed to send!`,
             variant: "danger",
             show: true,
           });
@@ -61,30 +58,31 @@ function ComingSoon(props) {
   };
 
   const renderer = ({ days, hours, minutes, seconds }) => {
-    console.log(days, hours, minutes, seconds);
     return (
-      <div>
-        <div>
-            <span>{zeroPad(days)}</span> 
-            <span>Days</span>
+      <div className="box-countdown">
+        <div className="countdown-item">
+          <div className="countdown-value">
+            <span>{zeroPad(days)}</span>
+          </div>
+          <span className="sub-count">Days</span>
         </div>
-        <div>
-            <span>
-                {zeroPad(hours)}
-            </span>
-            <span>Hours</span>
+        <div className="countdown-item">
+          <div className="countdown-value">
+            <span>{zeroPad(hours)}</span>
+          </div>
+          <span className="sub-count">Hours</span>
         </div>
-        <div>
-            <span>
-                {zeroPad(minutes)}
-            </span>
-            <span>Minutes</span>
+        <div className="countdown-item">
+          <div className="countdown-value">
+            <span>{zeroPad(minutes)}</span>
+          </div>
+          <span className="sub-count">Minutes</span>
         </div>
-        <div>
-            <span>
-                {zeroPad(seconds)} 
-            </span>
-            <span>Seconds</span>
+        <div className="countdown-item">
+          <div className="countdown-value">
+            <span>{zeroPad(seconds)}</span>
+          </div>
+          <span className="sub-count">Seconds</span>
         </div>
       </div>
     );
@@ -92,6 +90,9 @@ function ComingSoon(props) {
 
   return (
     <section className="page-title comimg-soon">
+      <Helmet>
+        <title>Comimg Soon</title>
+      </Helmet>
       <div className="container">
         <div className="row">
           <div className="col-md-12">
@@ -113,24 +114,24 @@ function ComingSoon(props) {
           <div className="col-md-12">
             <div className="featured-countdown">
               <span className="slogan"></span>
-              {/* <span className="js-countdown" data-timer="1865550"></span> */}
               <Countdown date={Date.now() + 1865550000} renderer={renderer} />
-              {/* <ul className="desc">
-                <li>Days</li>
-                <li>Hours</li>
-                <li>Minutes</li>
-                <li>Seconds</li>
-              </ul> */}
             </div>
-            <p className="my-0">{formData.alertmessage}</p>
-            <form action="#" className="newlletter-form" id="subscribe-form" onSubmit={handleSubmit}>
+            <p className={`alert-subscribe ${formData.variant}`}>{formData.alertmessage}</p>
+            <form
+              action="#"
+              className="newlletter-form"
+              id="subscribe-form"
+              onSubmit={handleSubmit}
+            >
               <span></span>
               <input
                 type="email"
                 placeholder="Your Email Address"
                 required=""
                 id="subscribe-email"
-                name='email' value={formData.email} onChange={handleChange}
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
               />
               <div className="btn-pst">
                 <button

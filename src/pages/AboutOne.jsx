@@ -7,11 +7,15 @@ import Team from '../features/team/home-v2';
 import dataTeam from '../assets/fake-data/data-team';
 import Partner from '../features/partner';
 import dataPartner from '../assets/fake-data/data-partner';
+import { Helmet } from 'react-helmet';
 
 
 function AboutOne(props) {
     return (
         <div className='about'>
+            <Helmet>
+                <title>About 01</title>
+            </Helmet>
             <PageTitle title='About Us' />
 
             <About data={dataAbout} />
